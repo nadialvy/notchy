@@ -16,19 +16,21 @@ enum Snapshot {
         let model = NotchViewModel(store: store)
         for (name, configure) in model.snapshotStates {
             configure()
+            // First pass lets the list report its measured height.
+            write(model, to: nil)
             write(model, to: dir.appendingPathComponent("\(name).png"))
         }
         return true
     }
 
-    private static func write(_ model: NotchViewModel, to url: URL) {
+    private static func write(_ model: NotchViewModel, to url: URL?) {
         let view = NotchView(model: model)
             .frame(width: NotchPanel.size.width, height: NotchPanel.size.height)
             .background(Color(white: 0.85))
             .environment(\.colorScheme, .dark)
         let renderer = ImageRenderer(content: view)
         renderer.scale = 2
-        guard let image = renderer.cgImage else { return }
+        guard let image = renderer.cgImage, let url else { return }
         let rep = NSBitmapImageRep(cgImage: image)
         try? rep.representation(using: .png, properties: [:])?.write(to: url)
         print("wrote \(url.path)")

@@ -22,6 +22,7 @@ final class NotchPanel: NSPanel {
         isMovable = false
         hidesOnDeactivate = false
         ignoresMouseEvents = true
+        acceptsMouseMovedEvents = true
 
         let host = FirstClickHostingView(rootView: NotchView(model: model))
         host.sizingOptions = []

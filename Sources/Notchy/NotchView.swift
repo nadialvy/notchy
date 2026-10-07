@@ -7,11 +7,12 @@ struct NotchView: View {
     var body: some View {
         let size = model.contentSize
         ZStack(alignment: .top) {
-            NotchShape(topRadius: 6, bottomRadius: model.mode == .ambient ? 10 : 14)
+            NotchShape(topRadius: 6, bottomRadius: model.mode == .expanded ? 22 : 10)
                 .fill(Color.black)
             content
         }
         .frame(width: size.width, height: size.height, alignment: .top)
+        .clipShape(NotchShape(topRadius: 6, bottomRadius: model.mode == .expanded ? 22 : 10))
         .opacity(model.mode == .hidden ? 0 : 1)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .animation(.spring(response: 0.38, dampingFraction: 0.82), value: model.mode)
@@ -25,6 +26,9 @@ struct NotchView: View {
             EmptyView()
         case .ambient:
             AmbientView(sessions: model.sessions, notchWidth: model.geometry.notchSize.width)
+        case .expanded:
+            ExpandedView(model: model)
+                .transition(.opacity)
         }
     }
 }
