@@ -6,12 +6,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let store = SessionStore()
     private lazy var model = NotchViewModel(store: store)
     private var panel: NotchPanel?
+    private var menuBar: MenuBarController?
     private var mouseMonitors: [Any] = []
     private var cancellables: Set<AnyCancellable> = []
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         Settings.registerDefaults()
         store.start()
+        menuBar = MenuBarController(store: store)
 
         let panel = NotchPanel(model: model)
         panel.reposition(on: model.geometry.screen)
