@@ -13,6 +13,11 @@ struct NotchView: View {
         }
         .frame(width: size.width, height: size.height, alignment: .top)
         .clipShape(NotchShape(topRadius: 6, bottomRadius: model.mode == .expanded ? 22 : 10))
+        .overlay {
+            if model.mode == .alert {
+                AlertGlow(bottomRadius: 10)
+            }
+        }
         .opacity(model.mode == .hidden ? 0 : 1)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .animation(.spring(response: 0.38, dampingFraction: 0.82), value: model.mode)
@@ -26,6 +31,18 @@ struct NotchView: View {
             EmptyView()
         case .ambient:
             AmbientView(sessions: model.sessions, notchWidth: model.geometry.notchSize.width)
+        case .peek(let id):
+            CardView(model: model) {
+                if let session = model.sessions.first(where: { $0.id == id }) {
+                    SessionRow(session: session)
+                }
+            }
+        case .alert:
+            CardView(model: model) {
+                ForEach(model.waitingSessions.prefix(2)) { session in
+                    AlertLine(session: session)
+                }
+            }
         case .expanded:
             ExpandedView(model: model)
                 .transition(.opacity)
