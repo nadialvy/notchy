@@ -27,7 +27,7 @@ struct ExpandedView: View {
                     .padding(.vertical, 14)
             }
             ForEach(model.sessions) { session in
-                SessionRow(session: session)
+                SessionRow(session: session) { TerminalJumper.jump(to: session) }
             }
         }
         .padding(.horizontal, 12)

@@ -34,7 +34,7 @@ struct NotchView: View {
         case .peek(let id):
             CardView(model: model) {
                 if let session = model.sessions.first(where: { $0.id == id }) {
-                    SessionRow(session: session)
+                    SessionRow(session: session) { TerminalJumper.jump(to: session) }
                 }
             }
         case .alert:
