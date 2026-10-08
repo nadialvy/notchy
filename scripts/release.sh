@@ -13,6 +13,7 @@ mkdir -p "$STAGE"
 cp -R build/Notchy.app "$STAGE/"
 cp scripts/release-install.sh "$STAGE/install.sh"
 cp scripts/hooks.sh "$STAGE/hooks.sh"
+cp -R opencode "$STAGE/opencode"
 ditto -c -k --keepParent "$STAGE" "$ZIP"
 
 echo "Packaged $ZIP"

@@ -1,6 +1,7 @@
 #!/bin/bash
 # Installer shipped inside the release zip (as install.sh).
-# Installs the prebuilt Notchy.app next to this script, then registers the Claude Code hooks.
+# Installs the prebuilt Notchy.app next to this script, the opencode plugin if opencode is set up,
+# and the Claude Code hooks if Claude Code is set up.
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -12,8 +13,13 @@ mkdir -p ~/Applications ~/.notchy/bin
 rm -rf ~/Applications/Notchy.app
 cp -R Notchy.app ~/Applications/
 cp Notchy.app/Contents/MacOS/notchy-hook ~/.notchy/bin/notchy-hook
+if [ -d ~/.config/opencode ]; then
+  mkdir -p ~/.config/opencode/plugins
+  cp opencode/notchy.js ~/.config/opencode/plugins/notchy.js
+  echo "Installed the opencode plugin at ~/.config/opencode/plugins/notchy.js"
+fi
 
 open ~/Applications/Notchy.app
 echo "Installed ~/Applications/Notchy.app and ~/.notchy/bin/notchy-hook"
 
-./hooks.sh
+if [ -d ~/.claude ]; then ./hooks.sh; fi
