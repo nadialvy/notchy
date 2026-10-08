@@ -14,11 +14,47 @@ instead of switching back to Terminal every few minutes.
 ## Requirements
 
 - macOS 14 or later, ideally a MacBook with a notch (other screens get a fake notch at the top center)
-- Swift 5.10+ (the Xcode Command Line Tools are enough, full Xcode isn't needed)
+- Works on both Apple Silicon and Intel Macs
 - Claude Code running in Terminal.app (other terminals still work, but clicking a session only brings Terminal forward)
 
 ## Install
-Click this link 👉 https://github.com/nadialvy/notchy/releases 👈
+
+1. Open the [**Releases**](https://github.com/nadialvy/notchy/releases/latest) page and download `Notchy-x.y.z.zip`.
+2. Double-click the zip to unpack it. You get a `Notchy` folder.
+3. Open Terminal and run the installer from that folder:
+
+   ```bash
+   cd ~/Downloads/Notchy
+   ./install.sh
+   ```
+
+   It copies the app to `~/Applications`, puts the hook in `~/.notchy/bin`, opens Notchy, and then
+   shows the change it wants to make to `~/.claude/settings.json`. Type `y` to save it.
+
+Sessions started after this show up automatically. The first time you click a session,
+macOS asks whether Notchy may control Terminal. Allow it so Notchy can switch tabs.
+
+Use the menu bar icon to turn sounds on or off, enable Launch at Login, or quit.
+
+> **Why a script instead of dragging the app?** Notchy isn't signed with an Apple Developer ID,
+> so macOS would block it when you double-click it. The installer clears that block for you.
+> It also needs `jq`, which macOS 15+ already has. On macOS 14, run `brew install jq` first.
+
+### Build from source
+
+```bash
+git clone https://github.com/nadialvy/notchy.git
+cd notchy
+./scripts/install.sh   # builds the app into ~/Applications and the hook into ~/.notchy/bin
+./scripts/hooks.sh     # adds the hook to ~/.claude/settings.json (shows a diff first)
+```
+
+### Uninstall
+
+```bash
+~/Downloads/Notchy/hooks.sh --remove   # or ./scripts/hooks.sh --remove from the repo
+rm -rf ~/Applications/Notchy.app ~/.notchy
+```
 
 ## How it works
 
@@ -33,4 +69,7 @@ See [CONTEXT.md](CONTEXT.md) for the vocabulary and [docs/adr](docs/adr) for the
 ```bash
 ./scripts/build.sh                                        # build/Notchy.app
 build/Notchy.app/Contents/MacOS/Notchy --snapshot /tmp/n  # render each notch state to PNG
+./scripts/release.sh                                      # universal build/Notchy-<version>.zip for a release
 ```
+
+Building from source needs Swift 5.10+ (the Xcode Command Line Tools are enough).
