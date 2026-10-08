@@ -41,6 +41,9 @@ if status.pid == nil || status.tty == nil {
     status.pid = owner?.pid
     status.tty = owner?.tty
 }
+if status.terminal == nil {
+    status.terminal = ProcessInfo.processInfo.environment["TERM_PROGRAM"]
+}
 
 let toolName = payload["tool_name"] as? String ?? ""
 let toolInput = payload["tool_input"] as? [String: Any] ?? [:]

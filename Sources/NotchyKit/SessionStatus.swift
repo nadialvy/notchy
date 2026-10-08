@@ -27,6 +27,8 @@ public struct SessionStatus: Codable, Equatable, Identifiable, Sendable {
     public var sessionId: String
     public var cwd: String
     public var tty: String?
+    /// `TERM_PROGRAM` of the terminal running the session, e.g. "iTerm.app" or "Apple_Terminal".
+    public var terminal: String?
     public var pid: Int32?
     public var state: SessionState
     public var lastPrompt: String?

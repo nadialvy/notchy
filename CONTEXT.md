@@ -23,7 +23,7 @@ Target: MacBook Pro M1 Pro (notch internal), macOS 14+, Terminal.app, personal u
 | **Last Prompt** | Prompt terakhir user di Session tersebut (teks kecil abu-abu), dari `UserPromptSubmit`. |
 | **Peek** | Panel auto-expand ±3 detik menampilkan satu Session Row saat Session jadi `done`. |
 | **Alert** | Panel/indicator berdenyut terus (+ suara) saat Session jadi `needs_permission`, sampai state berubah. |
-| **Jump** | Klik Session Row → fokus tab Terminal.app yang menjalankan Session itu (dicocokkan lewat `tty`). |
+| **Jump** | Klik Session Row → fokus tab Terminal.app / iTerm2 yang menjalankan Session itu (dicocokkan lewat `tty`). |
 
 ## Session Lifecycle
 
