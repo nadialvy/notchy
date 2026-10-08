@@ -9,14 +9,14 @@ instead of switching back to Terminal every few minutes.
 - **Hover the notch** to see each session: project, your last prompt, what the agent is doing, task progress and time spent.
 - **When a session finishes**, the notch peeks open for a few seconds with the agent's last message.
 - **When the agent needs permission** (or asks you a question), the notch pulses orange until you answer.
-- **Click a session** to jump straight to its Terminal tab.
+- **Click a session** to jump straight to its Terminal.app or iTerm2 tab.
 
 ## Requirements
 
 - macOS 14 or later, ideally a MacBook with a notch (other screens get a fake notch at the top center)
 - Works on both Apple Silicon and Intel Macs
-- [Claude Code](https://docs.claude.com/en/docs/claude-code) or [opencode](https://opencode.ai) (1.2+), running in Terminal.app
-  (other terminals still work, but clicking a session only brings Terminal forward)
+- [Claude Code](https://docs.claude.com/en/docs/claude-code) or [opencode](https://opencode.ai) (1.2+), running in Terminal.app or iTerm2
+  (other terminals still work, but clicking a session only brings Terminal/iTerm forward)
 
 ## Install
 
@@ -38,7 +38,7 @@ instead of switching back to Terminal every few minutes.
    Run opencode or Claude Code at least once before installing, so their config folders exist.
 
 Sessions started after this show up automatically. The first time you click a session,
-macOS asks whether Notchy may control Terminal. Allow it so Notchy can switch tabs.
+macOS asks whether Notchy may control Terminal (or iTerm). Allow it so Notchy can switch tabs.
 
 Use the menu bar icon to turn sounds on or off, enable Launch at Login, or quit.
 

@@ -13,15 +13,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.0</string>
+	<string>1.2.0</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>14.0</string>
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSAppleEventsUsageDescription</key>
-	<string>Notchy switches to the Terminal tab that runs the Claude session you click.</string>
+	<string>Notchy switches to the Terminal or iTerm2 tab that runs the Claude session you click.</string>
 	<key>NSHighResolutionCapable</key>
 	<true/>
 </dict>
