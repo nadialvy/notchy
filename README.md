@@ -18,25 +18,7 @@ instead of switching back to Terminal every few minutes.
 - Claude Code running in Terminal.app (other terminals still work, but clicking a session only brings Terminal forward)
 
 ## Install
-
-```bash
-git clone https://github.com/nadialvy/notchy.git
-cd notchy
-./scripts/install.sh   # builds the app into ~/Applications and the hook into ~/.notchy/bin
-./scripts/hooks.sh     # adds the hook to ~/.claude/settings.json (shows a diff first)
-```
-
-Sessions started after this show up automatically. The first time you click a session,
-macOS asks whether Notchy may control Terminal. Allow it so Notchy can switch tabs.
-
-Use the menu bar icon to turn sounds on or off, enable Launch at Login, or quit.
-
-To uninstall:
-
-```bash
-./scripts/hooks.sh --remove
-rm -rf ~/Applications/Notchy.app ~/.notchy
-```
+Click this link 👉 https://github.com/nadialvy/notchy/releases 👈
 
 ## How it works
 
